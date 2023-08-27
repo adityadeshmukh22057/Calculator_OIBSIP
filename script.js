@@ -1,31 +1,29 @@
-const input = document.getElementById('InputBox');
-const buttons = document.querySelectorAll('button');
+et input = document.getElementById('InputBox');
+let buttons = document.querySelectorAll('button');
 
-let string = "";
-
-buttons.forEach(button => {
+let string ="";
+let arr = Array.from(buttons);
+arr.forEach(button => {
     button.addEventListener('click', (e) => {
-        const buttonText = e.target.innerHTML;
-
-        switch (buttonText) {
-            case '=':
-                string = eval(string);
-                input.value = string;
-                break;
-            case 'AC':
-                string = "";
-                input.value = string;
-                break;
-            case 'DEL':
-                string = string.slice(0, -1);
-                input.value = string;
-                break;
-            default:
-                string += buttonText;
-                input.value = string;
-                break;
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+            input.value = string;
         }
-    });
-});
 
-})
+        else if(e.target.innerHTML == 'AC'){
+            string = "";
+            input.value = string;
+        }
+        else if(e.target.innerHTML == 'DEL'){
+            string = string.substring(0, string.length-1);
+            input.value = string;
+
+        }
+        else{
+            string += e.target.innerHTML;
+            input.value = string;
+        }
+
+       
+    })
+}) 
